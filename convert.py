@@ -1,6 +1,7 @@
 
 import shapefile
 
+#single use script to format and index the shapefile into more workable blocks
 def convert():
 	sf = shapefile.Reader("tl_2014_us_zcta510/tl_2014_us_zcta510.shp")
 	

@@ -3,6 +3,7 @@ import pycurl
 import io
 import re
 
+#detect if found within relevant polygon, linear examination
 def point_in_poly(x,y,poly):
 
 	n = len(poly)
@@ -21,7 +22,8 @@ def point_in_poly(x,y,poly):
 		p1x,p1y = p2x,p2y
 
 	return inside
-	
+
+#iterate through each source file
 def find_zip_code(latitude, longitude):
 	for x in range(10):
 		i = 9 - x
@@ -30,6 +32,7 @@ def find_zip_code(latitude, longitude):
 			return rc
 		print("Doesn't start with " + str(i))
 
+#read line by line through file block
 def find_in_file(filename, latitude, longitude):
 	with open(filename, 'r') as f:
 		for line in f:
@@ -47,7 +50,7 @@ def find_in_file(filename, latitude, longitude):
 			if point_in_poly(latitude, longitude, poly):
 				return line_zip
 	return False
-
+	
 def write_coordinates_for_zip_prefix(first_digit, output_filename, target_list):
 	with open(first_digit, 'r') as f:
 		for line in f:
